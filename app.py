@@ -9,8 +9,8 @@ redis = Redis(host='redis', port=6379)
 @app.route('/')
 def hello():
     redis.incr('hits')    
-
-    return f'Hello World! I have been seen {redis.get('hits').decode('utf8')} times.'
+    view_count = redis.get('hits').decode('utf8')
+    return f'Hello World! I have been seen {view_count} times.'
 
 
 if __name__ == "__main__":
